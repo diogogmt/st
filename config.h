@@ -94,32 +94,29 @@ char *termname = "st-256color";
 unsigned int tabspaces = 2;
 
 /* Terminal colors (16 first used in escape sequence) */
+// Set default to bluloco light theme
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
-
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
+  [0]   = "#d5d6dd",
+  [1]   = "#d52753",
+  [2]   = "#23974a",
+  [3]   = "#df631c",
+  [4]   = "#275fe4",
+  [5]   = "#823ff1",
+  [6]   = "#27618d",
+  [7]   = "#000000",
+  [8]   = "#e4e5ed",
+  [9]   = "#ff6480",
+  [10]  = "#3cbc66",
+  [11]  = "#c5a332",
+  [12]  = "#0099e1",
+  [13]  = "#ce33c0",
+  [14]  = "#6d93bb",
+  [15]  = "#26272d",
+  // more colors can be added after 255 to use with DefaultXX
+  [255] = 0,
+  [256] = "#f9f9f9", // background
+  [257] = "#383a42", // foreground
+  [258] = "#383a42", // cursor
 };
 
 
@@ -127,10 +124,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultbg = 256;
+unsigned int defaultfg = 257;
+static unsigned int defaultcs = 258;
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
