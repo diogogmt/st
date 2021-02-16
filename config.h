@@ -93,6 +93,9 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 2;
 
+// background opacity
+float alpha = 0.8;
+
 /* Terminal colors (16 first used in escape sequence) */
 // Set default to bluloco light theme
 static const char *colorname[] = {
@@ -114,9 +117,10 @@ static const char *colorname[] = {
   [15]  = "#26272d",
   // more colors can be added after 255 to use with DefaultXX
   [255] = 0,
-  [256] = "#f9f9f9", // background
-  [257] = "#383a42", // foreground
-  [258] = "#383a42", // cursor
+  [256] = "#383a42", // cursor
+  [257] = "#383a42", // reverse cursor
+  [258] = "#f9f9f9", // background
+  [259] = "#383a42", // foreground
 };
 
 
@@ -124,10 +128,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultbg = 256;
-unsigned int defaultfg = 257;
-static unsigned int defaultcs = 258;
-static unsigned int defaultrcs = 0;
+static unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
+unsigned int defaultbg = 258;
+unsigned int defaultfg = 259;
 
 /*
  * Default shape of cursor
@@ -186,9 +190,9 @@ ResourcePref resources[] = {
 		{ "color13",      STRING,  &colorname[13] },
 		{ "color14",      STRING,  &colorname[14] },
 		{ "color15",      STRING,  &colorname[15] },
-		{ "background",   STRING,  &colorname[256] },
-		{ "foreground",   STRING,  &colorname[257] },
-		{ "cursorColor",  STRING,  &colorname[258] },
+		{ "cursorColor",  STRING,  &colorname[256] },
+		{ "background",   STRING,  &colorname[258] },
+		{ "foreground",   STRING,  &colorname[259] },
 		{ "termname",     STRING,  &termname },
 		{ "shell",        STRING,  &shell },
 		{ "minlatency",   INTEGER, &minlatency },
@@ -199,6 +203,7 @@ ResourcePref resources[] = {
 		{ "borderpx",     INTEGER, &borderpx },
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
+    { "alpha",        FLOAT,   &alpha },
 };
 
 /*
@@ -230,6 +235,8 @@ static Shortcut shortcuts[] = {
   // Custom
   { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
+  { MODKEY,		            XK_s,		        changealpha,	{.f = -0.05} },
+	{ MODKEY,		            XK_x,		        changealpha,	{.f = +0.05} },
 
   // Default
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
