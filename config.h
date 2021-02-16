@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /*
  * appearance
  *
@@ -237,6 +239,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
   { MODKEY,		            XK_s,		        changealpha,	{.f = -0.05} },
 	{ MODKEY,		            XK_x,		        changealpha,	{.f = +0.05} },
+	{ MODKEY,		            XF86XK_MonBrightnessUp,   changealpha,	{.f = +0.05} },
+	{ MODKEY,		            XF86XK_MonBrightnessDown, changealpha,	{.f = -0.05} },
 
   // Default
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
