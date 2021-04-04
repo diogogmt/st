@@ -8,6 +8,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "mono:pixelsize=18:antialias=true:autohint=true";
+static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
 static int borderpx = 2;
 
 /*
@@ -176,6 +177,7 @@ static uint forcemousemod = ShiftMask;
  */
 ResourcePref resources[] = {
 		{ "font",         STRING,  &font },
+    { "fontalt0",     STRING,  &font2[0] },
 		{ "color0",       STRING,  &colorname[0] },
 		{ "color1",       STRING,  &colorname[1] },
 		{ "color2",       STRING,  &colorname[2] },
@@ -237,10 +239,10 @@ static Shortcut shortcuts[] = {
   // Custom
   { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
-  { MODKEY,		            XK_s,		        changealpha,	{.f = -0.05} },
-	{ MODKEY,		            XK_x,		        changealpha,	{.f = +0.05} },
 	{ MODKEY,		            XF86XK_MonBrightnessUp,   changealpha,	{.f = +0.05} },
 	{ MODKEY,		            XF86XK_MonBrightnessDown, changealpha,	{.f = -0.05} },
+	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
+	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
 
   // Default
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
